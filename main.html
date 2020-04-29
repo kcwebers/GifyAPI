@@ -11,26 +11,29 @@
 </head>
 <body class="shadow p-3 m-3">
     <div class="container text-center">
-
+        
+        <!-- button should only appear after a search so that page can be relaoded and another search can be done -->
         <a href="" class="refresh btn btn-danger mt-4">Go Again?</a>
 
         <div class="search mb-4 my-auto">
             <h1 class="display-2">Let's look for a <span class="text-danger">.gif</span>!</h1>
 
+            <!-- Input field for search -->
             <input id="searchVal" class="form-control mb-4" type="text" placeholder="Whatcha Lookin' For?">
             <div class="form-group">
 
+                <!-- Input field for number of call returns (# of gif that will be populated) -->
                 <input id="limit" class="form-control mb-4" type="text" placeholder="How Many Results Do You Want?">
                 <small class="text-danger small">If you don't tell us, we'll give you 25!</small>
             </div>
             <button id="searchBtn" class="btn btn-dark">Search</button>
+        </div> <!-- end of main body of html -->
 
-        </div>
-        
         <div class="results m-4">
+            <!-- add the results here -->
         </div>
     
-    </div> 
+    </div> <!-- end of containter -->
 
    
 </body>
