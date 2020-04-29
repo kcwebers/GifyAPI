@@ -26,7 +26,7 @@
             <button id="searchBtn" class="btn btn-dark">Search</button>
 
         </div>
-
+        
         <div class="results m-4">
         </div>
     
@@ -37,31 +37,43 @@
 <script>
     $(document).ready(function(){
         console.log("helllo there")
-
+        // 'refresh' button hidden until the search is populted, then revealed so the page can be reset for additional search
         $('.refresh').hide()
 
         $('#searchBtn').click(function(){
             $('.search').hide()
             $('.refresh').show()
-
+            // because we aren't using a 'real' form that sends data to and froma  back-end, the getElementById() allows us to retain the entered value of the above search box
             var searchVal = document.getElementById("searchVal").value;
             var limit = document.getElementById("limit").value
+            
+            // make sure on our end that value was taken in
             console.log(searchVal) 
         
+            // access api with searched value 
             $.get("http://api.giphy.com/v1/gifs/search?q=" + searchVal + "&api_key=GmEfOBwHF9Cr3YYA4xGppDBFSd2e7ytA&limit=" + limit).done(function(data) { 
+                // console.log data recieved via api call
                 console.log("success got data", data); 
 
+                // if there is no data output (no search result or no search input)
                 if(data.data.length < 1) {
                     $('.results').append('<h1 class="display-4">Showing <span class="text-danger"> 0 </span> Results! </h1> <h1 class="display-4">Please give us something different to search for!</h1>') 
                 } else {
+                    // if there is a data output
                     $('.results').append('<h1 class="display-4">Showing <span class="text-danger">' + limit + '</span> Results for <span class="text-danger"> "' + searchVal + ' "</span></h1>') 
+
+                    // loop through data to access each individual gif in results
                     for(var i = 0 ; i < data.data.length ; i ++) {
                         console.log(data.data[i].id);
+    
+                        // add img to the div 'results' ; as loop continues, more gifs will populate and generate urls
+                        // used 'fixed_height' to retain some structure to look of site
                         $('.results').append('<img class="shadow p-3 m-3 bg-white rounded" src="' + data.data[i].images.fixed_height.url + '" alt="' + data.data[i].title + '">')
                     }
-                } 
-            }); 
+                } // end of else statement
+            }); // end of api call
             
+            // can click button to refresh page and go again!
             $('.refresh').click(function(){
                 location.reload(true);
             });
