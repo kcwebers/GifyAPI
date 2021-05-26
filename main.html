@@ -11,7 +11,6 @@
 </head>
 <body class="shadow p-3 m-3">
     <div class="container text-center">
-        <h1>This is for git demo</h1>
         
         <!-- button should only appear after a search so that page can be relaoded and another search can be done -->
         <a href="" class="refresh btn btn-danger mt-4">Go Again?</a>
@@ -35,8 +34,6 @@
         </div>
     
     </div> <!-- end of containter -->
-
-   
 </body>
 <script>
     $(document).ready(function(){
@@ -49,7 +46,7 @@
             $('.refresh').show()
             // because we aren't using a 'real' form that sends data to and froma  back-end, the getElementById() allows us to retain the entered value of the above search box
             var searchVal = document.getElementById("searchVal").value;
-            var limit = document.getElementById("limit").value
+            var limit = document.getElementById("limit").value;
             
             // make sure on our end that value was taken in
             console.log(searchVal) 
